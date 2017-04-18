@@ -28,6 +28,14 @@
     return shared;
 }
 
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        self.employees = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 //MARK: Accessor (get) methods
 -(NSInteger)count {
     return self.employees.count;
