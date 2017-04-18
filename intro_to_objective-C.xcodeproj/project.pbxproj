@@ -35,6 +35,7 @@
 		62B00B191EA564BD004EF9C4 /* NSString+StringOps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringOps.m"; sourceTree = "<group>"; };
 		62B00B1B1EA59DFF004EF9C4 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		62B00B1C1EA59DFF004EF9C4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		62B00B1E1EA5A7EF004EF9C4 /* PersonQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonQueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +97,7 @@
 				62B00B0C1EA52F06004EF9C4 /* Person.m */,
 				62B00B1B1EA59DFF004EF9C4 /* Employee.h */,
 				62B00B1C1EA59DFF004EF9C4 /* Employee.m */,
+				62B00B1E1EA5A7EF004EF9C4 /* PersonQueue.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
