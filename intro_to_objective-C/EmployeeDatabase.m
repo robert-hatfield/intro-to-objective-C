@@ -10,7 +10,7 @@
 
 @interface EmployeeDatabase ()
 
-@property(strong, nonatomic) NSArray *employees;
+@property(strong, nonatomic) NSArray *allEmployees;
 
 @end
 
@@ -28,6 +28,20 @@
     return shared;
 }
 
+//MARK: Accessor (get) methods
+-(NSInteger)count {
+    return self.allEmployees.count;
+}
+
+-(NSArray *)allEmployees {
+    // Perform a deep copy to maintain encapsulation of the database itself.
+    NSArray *result = [self.allEmployees copy];
+    return result;
+}
+
+-(Employee *)employeeAtIndex:(int)index {
+    return [self.allEmployees objectAtIndex:index];
+}
 
 //MARK: Helper methods
 
