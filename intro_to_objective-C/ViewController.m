@@ -7,9 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Person.h"
 #import "NSString+StringOps.h"
-#import "Employee.h"
 #import "EmployeeDatabase.h"
 
 @interface ViewController ()
@@ -24,7 +22,7 @@
 //    How the database singleton will be accessed:
 //    [[EmployeeDatabase shared] allEmployees]
     
-    Employee *originalEmployee = [[Employee alloc]initWithFirstName:@"Roberto" lastName:@"McCoy" age:@38 yearsEmployed:@3 andManager:@"Esequiel"];
+    Employee *originalEmployee = [[Employee alloc]initWithFirstName:@"Roberto" lastName:@"McCoy" age:@38 email:@"robert@lucidthought.xyz" yearsEmployed:@3 andManager:@"Esequiel"];
     Employee *newEmployee = [originalEmployee copy];
     newEmployee.firstName = @"Brian";
     

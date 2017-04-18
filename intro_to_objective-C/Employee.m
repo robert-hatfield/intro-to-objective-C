@@ -13,11 +13,13 @@
 -(instancetype)initWithFirstName:(NSString *)firstName
                         lastName:(NSString *)lastName
                              age:(NSNumber *)age
+                           email:(NSString *)email
                    yearsEmployed:(NSNumber *)yearsEmployed
                       andManager:(NSString *)managerName {
     self = [super initWithFirstName:firstName lastName:lastName andAge:age];
     
     if (self) {
+        _email = email;
         _yearsEmployed = yearsEmployed;
         _managerName = managerName;
         // Generate a random integer for employee number.
@@ -30,6 +32,7 @@
 -(id)copyWithZone:(NSZone *)zone {
     // Allocation & init occurs on the parent Person class's copyWithZone method.
     Employee *employee = [super copyWithZone:zone];
+    employee.email = self.email;
     employee.employeeNumber = self.employeeNumber;
     employee.managerName = self.managerName;
     employee.yearsEmployed = self.yearsEmployed;
