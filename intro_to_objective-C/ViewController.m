@@ -30,6 +30,7 @@
     
     NSString *testString = @"Hello there. This is a test string.";
     NSLog(@"%@", [[testString wordList] description]);
+    NSLog(@"%@", [NSString reversedString:testString]);
 }
 
 

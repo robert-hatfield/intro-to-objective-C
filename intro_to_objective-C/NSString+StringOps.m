@@ -15,8 +15,18 @@
     return words;
 }
 
-// +(NSString *)reverseString: (NSString *) string {
++(NSString *)reversedString: (NSString *) string {
+    int length = (int)[string length];
+    NSMutableString *result = [NSMutableString stringWithCapacity:length];
     
-// }
+    int index;
+    
+    for (index = length - 1; index >= 0; index -= 1) {
+        unichar character = [string characterAtIndex: index];
+        [result appendFormat:@"%c", character];
+    }
+    
+    return result;
+}
 
 @end

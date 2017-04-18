@@ -11,6 +11,6 @@
 @interface NSString (StringOps)
 
 -(NSArray *)wordList;
-//+(NSString *)reverseString: (NSString *) string;
++(NSString *)reversedString: (NSString *) string;
 
 @end
