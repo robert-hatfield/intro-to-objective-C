@@ -35,9 +35,9 @@
     NSLog(@"%@", [NSString reversedString:testString]);
     
     Employee *workingPerson = [[Employee alloc] init];
-    [workingPerson setEmployeeNumber:2112];
+    [workingPerson setEmployeeNumber:@2112];
     
-    NSLog(@"Employee ID is: %d", [workingPerson employeeNumber]);
+    NSLog(@"Employee ID is: %@", [workingPerson employeeNumber]);
    
 
 }
