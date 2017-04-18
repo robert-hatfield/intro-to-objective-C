@@ -22,6 +22,8 @@
 //    _name = name;
 //}
 
+
+
 -(void)walk {
     NSString *name = [self name];
     NSLog(@"%@ is walking...", name);

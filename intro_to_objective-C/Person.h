@@ -10,7 +10,9 @@
 
 @interface Person : NSObject
 
-@property(strong, nonnull) NSString *name;
+@property NSString *firstName;
+@property NSString *lastName;
+@property int age;
 
 // Name accessor methods - not needed in Obj-C 2
 //-(NSString *)name;

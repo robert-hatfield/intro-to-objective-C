@@ -20,9 +20,10 @@
     [super viewDidLoad];
     
     Person *robert = [[Person alloc] init];
-    [robert setName:@"Robert"];
+    [robert setFirstName:@"Robert"];
+    [robert setLastName:@"Hatfield"];
+    [robert setAge:40];
     
-    NSString *personName = [robert name];
     
     [robert walk];
     
