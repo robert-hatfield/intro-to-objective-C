@@ -68,13 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				62B00B0E1EA52F14004EF9C4 /* Models */,
-				62B00B101EA52F3F004EF9C4 /* Views */,
 				62B00B0F1EA52F38004EF9C4 /* Controllers */,
+				62B00B101EA52F3F004EF9C4 /* Views */,
 				62B00AF71EA524F6004EF9C4 /* AppDelegate.h */,
 				62B00AF81EA524F6004EF9C4 /* AppDelegate.m */,
-				62B00AFD1EA524F6004EF9C4 /* Main.storyboard */,
 				62B00B001EA524F6004EF9C4 /* Assets.xcassets */,
-				62B00B021EA524F6004EF9C4 /* LaunchScreen.storyboard */,
 				62B00B051EA524F6004EF9C4 /* Info.plist */,
 				62B00AF41EA524F6004EF9C4 /* Supporting Files */,
 			);
@@ -114,6 +112,8 @@
 		62B00B101EA52F3F004EF9C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62B00AFD1EA524F6004EF9C4 /* Main.storyboard */,
+				62B00B021EA524F6004EF9C4 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";

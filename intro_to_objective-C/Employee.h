@@ -10,8 +10,14 @@
 
 @interface Employee : Person
 
-@property NSInteger employeeNumber;
-@property NSInteger yearsEmployed;
-@property NSString *managerName;
+-(int)employeeNumber;
+-(void)setEmployeeNumber:(int)employeeNumber;
+
+-(int)yearsEmployed;
+-(void)setYearsEmployed:(int) yearsEmployed;
+
+-(NSString *)managerName;
+-(void)setManagerName:(NSString *)managerName;
+
 
 @end
