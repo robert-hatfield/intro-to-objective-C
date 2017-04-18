@@ -43,8 +43,24 @@
     return [self.employees objectAtIndex:index];
 }
 
-//MARK: Helper methods
+//MARK: Mutating methods
+-(void)add:(Employee *)employee {
+    [self.employees addObject:employee];
+}
 
+-(void)remove:(Employee *)employee {
+    [self.employees removeObject:employee];
+}
+
+-(void)removeEmployeeAtIndex:(int)index {
+    [self.employees removeObjectAtIndex:index];
+}
+
+-(void)removeAllEmployees {
+    [self.employees removeAllObjects];
+}
+
+//MARK: Helper methods
 -(NSURL *)documentsDirectory {
     // Returns the user's documents directory of our sandbox
     NSURL *documentsDirectoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
