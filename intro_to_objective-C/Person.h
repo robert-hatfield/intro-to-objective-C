@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Person : NSObject
+@interface Person : NSObject <NSCopying>
 
-@property NSString *firstName;
-@property NSString *lastName;
-@property NSInteger age;
+@property(strong, nonatomic) NSString *firstName;
+@property(strong, nonatomic) NSString *lastName;
+@property(strong, nonatomic) NSNumber *age;
 
-// Name accessor methods - not needed in Obj-C 2
-//-(NSString *)name;
-//-(void)setName:(NSString *)name;
+-(instancetype)initWithFirstName:(NSString *)firstName
+                        lastName:(NSString *)lastName
+                          andAge:(NSNumber *)age;
 
 // Instance method
 -(void)walk;

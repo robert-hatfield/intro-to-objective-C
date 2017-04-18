@@ -23,7 +23,7 @@
     Person *robert = [[Person alloc] init];
     [robert setFirstName:@"Robert"];
     [robert setLastName:@"Hatfield"];
-    [robert setAge:40];
+    [robert setAge:@40];
     
     
     [robert walk];
