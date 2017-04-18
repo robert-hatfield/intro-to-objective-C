@@ -12,7 +12,7 @@
 
 @property NSString *firstName;
 @property NSString *lastName;
-@property int age;
+@property NSInteger age;
 
 // Name accessor methods - not needed in Obj-C 2
 //-(NSString *)name;
