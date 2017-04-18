@@ -10,6 +10,7 @@
 #import "Person.h"
 #import "NSString+StringOps.h"
 #import "Employee.h"
+#import "EmployeeDatabase.h"
 
 @interface ViewController ()
 
@@ -19,6 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    How the database singleton will be accessed:
+//    [[EmployeeDatabase shared] allEmployees]
+    
+    Employee *originalEmployee = [[Employee alloc]initWithFirstName:@"Roberto" lastName:@"McCoy" age:@38 yearsEmployed:@3 andManager:@"Esequiel"];
+    Employee *newEmployee = [originalEmployee copy];
+    newEmployee.firstName = @"Brian";
+    
+    NSLog(@"Original employee is %@", originalEmployee.firstName);
+    NSLog(@"NEW employee name is %@", newEmployee.firstName);
     
     Person *robert = [[Person alloc] init];
     [robert setFirstName:@"Robert"];

@@ -8,7 +8,26 @@
 
 #import "EmployeeDatabase.h"
 
+@interface EmployeeDatabase ()
+
+@property(strong, nonatomic) NSArray *employees;
+
+@end
+
 @implementation EmployeeDatabase
+
++(instancetype)shared {
+    // Create singleton for Employee database.
+    static EmployeeDatabase *shared = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[[self class] alloc] init];
+    });
+    
+    return shared;
+}
+
 
 //MARK: Helper methods
 
