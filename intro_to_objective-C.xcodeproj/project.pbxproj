@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6259EAD61EA80B5A00735B45 /* AddEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6259EAD51EA80B5A00735B45 /* AddEmployeeViewController.m */; };
 		62B00AF61EA524F6004EF9C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00AF51EA524F6004EF9C4 /* main.m */; };
 		62B00AF91EA524F6004EF9C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00AF81EA524F6004EF9C4 /* AppDelegate.m */; };
 		62B00AFC1EA524F6004EF9C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00AFB1EA524F6004EF9C4 /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6259EAD41EA80B5A00735B45 /* AddEmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEmployeeViewController.h; sourceTree = "<group>"; };
+		6259EAD51EA80B5A00735B45 /* AddEmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEmployeeViewController.m; sourceTree = "<group>"; };
 		62B00AF11EA524F6004EF9C4 /* intro_to_objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "intro_to_objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B00AF51EA524F6004EF9C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		62B00AF71EA524F6004EF9C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 		62B00B0F1EA52F38004EF9C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6259EAD41EA80B5A00735B45 /* AddEmployeeViewController.h */,
+				6259EAD51EA80B5A00735B45 /* AddEmployeeViewController.m */,
 				62B00AFA1EA524F6004EF9C4 /* ViewController.h */,
 				62B00AFB1EA524F6004EF9C4 /* ViewController.m */,
 			);
@@ -203,6 +208,7 @@
 				62B00B1D1EA59DFF004EF9C4 /* Employee.m in Sources */,
 				62B00B0D1EA52F06004EF9C4 /* Person.m in Sources */,
 				62B00AF61EA524F6004EF9C4 /* main.m in Sources */,
+				6259EAD61EA80B5A00735B45 /* AddEmployeeViewController.m in Sources */,
 				62B00B211EA68764004EF9C4 /* EmployeeDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
