@@ -31,9 +31,23 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
-        self.employees = [[NSMutableArray alloc] init];
+        _employees = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfURL:[self archiveURL]]];
+        
+        if (! _employees) {
+            _employees = [[NSMutableArray alloc] init];
+        }
     }
     return self;
+}
+
+-(void)save {
+    BOOL success = [NSKeyedArchiver archiveRootObject:self.employees toFile:[self archiveURL].path];
+    
+    if (success) {
+        NSLog(@"saved Employees");
+    } else {
+        NSLog(@"save failed!");
+    }
 }
 
 //MARK: Accessor (get) methods
@@ -54,18 +68,24 @@
 //MARK: Mutating methods
 -(void)add:(Employee *)employee {
     [self.employees addObject:employee];
+    // Save to disk after changing the array
+    [self save];
 }
 
 -(void)remove:(Employee *)employee {
     [self.employees removeObject:employee];
+    // Save to disk after changing the array
+    [self save];
 }
 
 -(void)removeEmployeeAtIndex:(int)index {
-    [self.employees removeObjectAtIndex:index];
+    [self remove:[self employeeAtIndex:index]];
 }
 
 -(void)removeAllEmployees {
     [self.employees removeAllObjects];
+    // Save to disk after changing the array
+    [self save];
 }
 
 //MARK: Helper methods
