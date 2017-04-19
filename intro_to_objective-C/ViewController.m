@@ -10,7 +10,8 @@
 #import "NSString+StringOps.h"
 #import "EmployeeDatabase.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -18,37 +19,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    How the database singleton will be accessed:
-//    [[EmployeeDatabase shared] allEmployees]
-    
-    Employee *originalEmployee = [[Employee alloc]initWithFirstName:@"Roberto" lastName:@"McCoy" age:@38 email:@"robert@lucidthought.xyz" yearsEmployed:@3 andManager:@"Esequiel"];
-    Employee *newEmployee = [originalEmployee copy];
-    newEmployee.firstName = @"Brian";
-    
-    NSLog(@"Original employee is %@", originalEmployee.firstName);
-    NSLog(@"NEW employee name is %@", newEmployee.firstName);
-    
-    Person *robert = [[Person alloc] init];
-    [robert setFirstName:@"Robert"];
-    [robert setLastName:@"Hatfield"];
-    [robert setAge:@40];
-    
-    
-    [robert walk];
-    
-    [Person sayHello];
-    
-    NSString *testString = @"Hello there. This is a test string.";
-    NSLog(@"%@", [[testString wordList] description]);
-    NSLog(@"%@", [NSString reversedString:testString]);
-    
-    Employee *workingPerson = [[Employee alloc] init];
-    [workingPerson setEmployeeNumber:@2112];
-    
-    NSLog(@"Employee ID is: %@", [workingPerson employeeNumber]);
-   
 
+    // Assign this controller as the tableView's delegate and data source
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    // Create a new Employee and add it to the database.
+    Employee *robertEmployee = [[Employee alloc]initWithFirstName:@"Robert" lastName:@"Hatfield" age:@40 email:@"robert@lucidthought.xyz" yearsEmployed:@3 andManager:@"Esequiel"];
+    [[EmployeeDatabase shared] add:robertEmployee];
+    
+    // Copy first Employee, modify it, and add it to the database.
+    Employee *imposterEmployee = [robertEmployee copy];
+    imposterEmployee.firstName = @"Roberto";
+    imposterEmployee.lastName = @"McCoy";
+    imposterEmployee.email = @"robertmccoy@aol.com";
+    [[EmployeeDatabase shared] add:imposterEmployee];
+
+}
+
+//MARK: Implement TableViewDataSource methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[EmployeeDatabase shared] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    int index = (int)indexPath.row;
+    Employee *employee = [[EmployeeDatabase shared] employeeAtIndex:index];
+    
+    NSString *fullName = [NSString stringWithFormat: @"%@ %@", employee.firstName, employee.lastName];
+    cell.textLabel.text = fullName;
+    return cell;
 }
 
 @end
