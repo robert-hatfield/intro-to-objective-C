@@ -10,7 +10,7 @@
 #import "NSString+StringOps.h"
 #import "EmployeeDatabase.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -20,8 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Assign this controller as the tableView's delegate and data source
-    self.tableView.delegate = self;
+    // Assign this controller as the tableView's data source
     self.tableView.dataSource = self;
     
     // Create a new Employee and add it to the database.
