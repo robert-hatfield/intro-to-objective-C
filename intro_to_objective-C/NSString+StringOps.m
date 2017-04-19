@@ -17,6 +17,7 @@
 
 +(NSString *)reversedString: (NSString *) string {
     int length = (int)[string length];
+    
     NSMutableString *result = [NSMutableString stringWithCapacity:length];
     
     int index;

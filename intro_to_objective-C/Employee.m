@@ -10,36 +10,34 @@
 
 @implementation Employee
 
-
-int _employeeNumber;
-
--(int)employeeNumber { // getter method
-    return _employeeNumber;
+-(instancetype)initWithFirstName:(NSString *)firstName
+                        lastName:(NSString *)lastName
+                             age:(NSNumber *)age
+                           email:(NSString *)email
+                   yearsEmployed:(NSNumber *)yearsEmployed
+                      andManager:(NSString *)managerName {
+    self = [super initWithFirstName:firstName lastName:lastName andAge:age];
+    
+    if (self) {
+        _email = email;
+        _yearsEmployed = yearsEmployed;
+        _managerName = managerName;
+        // Generate a random integer for employee number.
+        _employeeNumber = [NSNumber numberWithInt:arc4random_uniform(1000)];
+    }
+    
+    return self;
 }
 
--(void)setEmployeeNumber:(int)employeeNumber {
-    _employeeNumber = employeeNumber;
+-(id)copyWithZone:(NSZone *)zone {
+    // Allocation & init occurs on the parent Person class's copyWithZone method.
+    Employee *employee = [super copyWithZone:zone];
+    employee.email = self.email;
+    employee.employeeNumber = self.employeeNumber;
+    employee.managerName = self.managerName;
+    employee.yearsEmployed = self.yearsEmployed;
+    
+    return employee;
 }
-
-int _yearsEmployed;
-
--(int)yearsEmployed {
-    return _yearsEmployed;
-}
-
--(void)setYearsEmployed:(int) yearsEmployed {
-    _yearsEmployed = yearsEmployed;
-}
-
-NSString *_managerName;
-
--(NSString *)managerName {
-    return _managerName;
-}
-
--(void)setManagerName:(NSString *)managerName {
-    _managerName = managerName;
-}
-
 
 @end

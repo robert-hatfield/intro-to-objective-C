@@ -10,19 +10,17 @@
 
 @implementation Person
 
-// Setter & getter methods no longer needed in Obj-C 2
-
-//NSString *_name; // underlying instance variable
-//
-//-(NSString *)name { // getter method
-//    return _name;
-//}
-//
-//-(void)setName:(NSString *)name { // setter method
-//    _name = name;
-//}
-
-
+-(instancetype)initWithFirstName:(NSString *)firstName
+                        lastName:(NSString *)lastName
+                          andAge:(NSNumber *)age {
+    self = [super init];
+    if (self) {
+        _firstName = firstName;
+        _lastName = lastName;
+        _age = age;
+    }
+    return self;
+}
 
 -(void)walk {
     NSString *name = [self firstName];
@@ -31,6 +29,17 @@
 
 +(void)sayHello {
     NSLog(@"Hello!");
+}
+
+// Deep, non-mutable copy of a Person object
+-(id)copyWithZone:(NSZone *)zone {
+    Person *person = [[[self class] alloc] init];
+    
+    person.firstName = self.firstName;
+    person.lastName = self.lastName;
+    person.age = self.age;
+    
+    return person;
 }
 
 @end
