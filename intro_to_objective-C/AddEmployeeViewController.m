@@ -8,6 +8,7 @@
 
 #import "AddEmployeeViewController.h"
 #import "EmployeeDatabase.h"
+#define COLOR_HINT_YELLOW colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.2
 
 @interface AddEmployeeViewController ()
 
@@ -30,11 +31,38 @@
 
 - (IBAction)savePressed:(UIButton *)sender {
     
-    // Confirm only numbers are in year fields
-    if ([self inputIsValidFor:_yearsEmployed] && [self inputIsValidFor:_employeeAge]) {
-        [self.view endEditing:YES];
-        [self dismissViewControllerAnimated:true completion:nil];
+
+    
+    // Stop if minimum fields (first & last name) are not completed
+    if ([_firstName.text isEqual: @""] || [_lastName.text isEqual: @""]) {
+        
+        if ([_firstName.text isEqual:@""]) {
+            NSLog(@"No text");
+            [_firstName setBackgroundColor:[UIColor COLOR_HINT_YELLOW]];
+        } else {
+            [_firstName setBackgroundColor:[UIColor whiteColor]];
+        }
+        
+        if ([_lastName.text isEqual:@""]) {
+            NSLog(@"No text");
+            [_lastName setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.2]];
+        } else {
+            [_lastName setBackgroundColor:[UIColor whiteColor]];
+        }
+        return;
+    }
+    
+    // Stop if year fields do not have valid numbers
+    if (![self inputIsValidFor:_yearsEmployed] || ![self inputIsValidFor:_employeeAge]) {
+        return;
     };
+    
+    Employee *newEmployee = [[Employee alloc]initWithFirstName:_firstName.text lastName:_lastName.text age:[NSNumber numberWithFloat:[_employeeAge.text floatValue]] email:_emailAddress.text yearsEmployed:[NSNumber numberWithFloat:[_yearsEmployed.text floatValue]] andManager:_managerName.text];
+    [[EmployeeDatabase shared] add:newEmployee];
+    
+    [self.view endEditing:YES];
+    [self dismissViewControllerAnimated:true completion:nil];
+
 }
 
 - (IBAction)cancelPressed:(UIButton *)sender {
@@ -55,6 +83,7 @@
         if ([input isEqual: @""]) {
             NSLog(@"No text entered, setting to zero.");
             textField.text = @"0";
+            textField.textColor = [UIColor blackColor];
             return YES;
         }
         NSLog(@"Input is not a number.");

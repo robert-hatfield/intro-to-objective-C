@@ -26,6 +26,11 @@
     NSLog(@"All Employees:%@", [[EmployeeDatabase shared] allEmployees]);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
+}
+
 //MARK: Implement TableViewDataSource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[EmployeeDatabase shared] count];
