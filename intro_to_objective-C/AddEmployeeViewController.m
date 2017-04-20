@@ -66,6 +66,7 @@
 }
 
 - (IBAction)cancelPressed:(UIButton *)sender {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
