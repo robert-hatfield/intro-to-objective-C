@@ -7,10 +7,17 @@
 //
 
 #import "AddEmployeeViewController.h"
+#import "EmployeeDatabase.h"
 
 @interface AddEmployeeViewController ()
+
 @property (strong, nonatomic) IBOutlet UIView *addEmployeeView;
-@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *employeeTextFields;
+@property (weak, nonatomic) IBOutlet UITextField *firstName;
+@property (weak, nonatomic) IBOutlet UITextField *lastName;
+@property (weak, nonatomic) IBOutlet UITextField *managerName;
+@property (weak, nonatomic) IBOutlet UITextField *emailAddress;
+@property (weak, nonatomic) IBOutlet UITextField *yearsEmployed;
+@property (weak, nonatomic) IBOutlet UITextField *employeeAge;
 
 @end
 
@@ -22,13 +29,39 @@
 }
 
 - (IBAction)savePressed:(UIButton *)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    
+    // Confirm only numbers are in year fields
+    if ([self inputIsValidFor:_yearsEmployed] && [self inputIsValidFor:_employeeAge]) {
+        [self.view endEditing:YES];
+        [self dismissViewControllerAnimated:true completion:nil];
+    };
 }
 
 - (IBAction)cancelPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+- (BOOL)inputIsValidFor:(UITextField *)textField {
+    NSString *decimalNumberPattern = @"^\\d+(\\.\\d+)?$";
+    NSString *input= textField.text;
+    NSRange patternRange = [input rangeOfString:decimalNumberPattern
+                                        options:NSRegularExpressionSearch];
+    
+    if (patternRange.location != NSNotFound) {
+        NSLog(@"Input is a valid number.");
+        textField.textColor = [UIColor blackColor];
+        return YES;
+    } else {
+        if ([input isEqual: @""]) {
+            NSLog(@"No text entered, setting to zero.");
+            textField.text = @"0";
+            return YES;
+        }
+        NSLog(@"Input is not a number.");
+        textField.textColor = [UIColor redColor];
+        return NO;
+    }
+}
 
 /*
 #pragma mark - Navigation

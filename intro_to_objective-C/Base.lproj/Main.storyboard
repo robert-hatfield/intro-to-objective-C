@@ -143,13 +143,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wkz-pe-i8g">
-                                <rect key="frame" x="233" y="254" width="32" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wkz-pe-i8g">
+                                <rect key="frame" x="225" y="254" width="48" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="4Vl-Jk-ELV"/>
+                                    <constraint firstAttribute="width" constant="48" id="4Vl-Jk-ELV"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employee Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtC-We-xvv">
@@ -159,9 +158,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYJ-Dz-hdA">
-                                <rect key="frame" x="233.5" y="292" width="32" height="30"/>
+                                <rect key="frame" x="225.5" y="292" width="48" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="cVB-xm-JXP"/>
+                                    <constraint firstAttribute="width" constant="48" id="cVB-xm-JXP"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -207,8 +206,12 @@
                     </view>
                     <connections>
                         <outlet property="addEmployeeView" destination="Iyy-iU-bMb" id="NWf-b6-xNS"/>
-                        <outletCollection property="employeeTextFields" destination="7Bs-7K-MNZ" id="e0d-dI-9DE"/>
-                        <outletCollection property="employeeTextFields" destination="LcA-Xe-3W1" id="TVV-bn-Wo2"/>
+                        <outlet property="emailAddress" destination="E4d-Ic-d9l" id="rbf-8Q-9DT"/>
+                        <outlet property="employeeAge" destination="ZYJ-Dz-hdA" id="qhD-7q-Jmh"/>
+                        <outlet property="firstName" destination="7Bs-7K-MNZ" id="7mg-fe-Zqg"/>
+                        <outlet property="lastName" destination="LcA-Xe-3W1" id="pn1-qW-SO7"/>
+                        <outlet property="managerName" destination="WiR-u9-h1b" id="gDc-mm-UUD"/>
+                        <outlet property="yearsEmployed" destination="Wkz-pe-i8g" id="HTw-9L-cR2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Oq-tW-VfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
