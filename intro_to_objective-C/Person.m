@@ -72,4 +72,13 @@
     return person;
 }
 
+-(void) dealloc {
+    // Release retained instance variables
+    [_firstName release];
+    [_lastName release];
+    [_age release];
+    
+    [super dealloc];
+}
+
 @end

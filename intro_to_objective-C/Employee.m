@@ -106,4 +106,14 @@
     return employee;
 }
 
+-(void)dealloc {
+    // Release retained instance variables
+    [_email release];
+    [_yearsEmployed release];
+    [_managerName release];
+    [_employeeNumber release];
+    
+    [super dealloc];
+}
+
 @end
