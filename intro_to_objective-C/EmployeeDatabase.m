@@ -41,16 +41,20 @@
 }
 
 -(void)save {
-    
-    [self willChangeValueForKey:@"employees"];
     BOOL success = [NSKeyedArchiver archiveRootObject:self.employees toFile:[self archiveURL].path];
-    [self didChangeValueForKey:@"employees"];
     
     if (success) {
         NSLog(@"saved Employees");
     } else {
         NSLog(@"save failed!");
     }
+}
+
+-(void)saveAndNotifyObservers {
+    [self willChangeValueForKey:@"employees"];
+    [self save];
+    [self didChangeValueForKey:@"employees"];
+
 }
 
 //MARK: Accessor (get) methods
@@ -71,22 +75,28 @@
 //MARK: Mutating methods
 -(void)add:(Employee *)employee {
     [self.employees addObject:employee];
-    [self save];
+    [self saveAndNotifyObservers];
 }
 
 -(void)remove:(Employee *)employee {
     [self.employees removeObject:employee];
-    [self save];
+    [self saveAndNotifyObservers];
 }
 
 -(void)removeEmployeeAtIndex:(int)index {
     [self remove:[self employeeAtIndex:index]];
+    [self saveAndNotifyObservers];
+}
+
+-(void)removeEmployeeFromTableAtIndex:(int)index {
+    [self remove:[self employeeAtIndex:index]];
     [self save];
 }
 
+
 -(void)removeAllEmployees {
     [self.employees removeAllObjects];    
-    [self save];
+    [self saveAndNotifyObservers];
 }
 
 //MARK: Helper methods

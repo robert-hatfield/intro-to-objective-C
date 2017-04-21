@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "EmployeeDatabase.h"
 
-@interface ViewController () <UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -18,9 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [[EmployeeDatabase shared] addObserver:self forKeyPath:@"employees" options:0 context:nil];
-    // Assign this controller as the tableView's data source
+    
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     // Log contents of singleton
     NSLog(@"All Employees:%@", [[EmployeeDatabase shared] allEmployees]);
@@ -54,5 +56,29 @@
     cell.textLabel.text = fullName;
     return cell;
 }
+
+//MARK: Implement TableViewDelegate methods
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[EmployeeDatabase shared] removeEmployeeFromTableAtIndex:(int)indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+
 
 @end
