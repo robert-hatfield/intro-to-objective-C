@@ -10,6 +10,18 @@
 
 @implementation Person
 
+-(instancetype)initWithFirstName:(NSString *)firstName
+                        lastName:(NSString *)lastName
+                          andAge:(NSNumber *)age {
+    self = [super init];
+    if (self) {
+        _firstName = firstName;
+        _lastName = lastName;
+        _age = age;
+    }
+    return self;
+}
+
 // Override setters for use with manual reference counting
 -(void)setFirstName:(NSString *)firstName {
     if (_firstName != firstName) {
@@ -39,18 +51,7 @@
     }
 }
 
--(instancetype)initWithFirstName:(NSString *)firstName
-                        lastName:(NSString *)lastName
-                          andAge:(NSNumber *)age {
-    self = [super init];
-    if (self) {
-        _firstName = firstName;
-        _lastName = lastName;
-        _age = age;
-    }
-    return self;
-}
-
+// Action methods
 -(void)walk {
     NSString *name = [self firstName];
     NSLog(@"%@ is walking...", name);
