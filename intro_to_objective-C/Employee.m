@@ -29,6 +29,7 @@
     return self;
 }
 
+// Encode & decode methods
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     
@@ -54,6 +55,45 @@
     [aCoder encodeObject:self.managerName forKey:@"managerName"];
     [aCoder encodeObject:self.employeeNumber forKey:@"employeeNumber"];
 }
+
+// Override setters for use with manual reference counting
+-(void) setEmployeeNumber:(NSNumber *)employeeNumber {
+    if (_employeeNumber != employeeNumber) {
+        [employeeNumber retain];
+        [_employeeNumber release];
+        
+        _employeeNumber = employeeNumber;
+    }
+}
+
+-(void) setYearsEmployed:(NSNumber *)yearsEmployed {
+    if (_yearsEmployed != yearsEmployed) {
+        [yearsEmployed retain];
+        [_yearsEmployed release];
+        
+        _yearsEmployed = yearsEmployed;
+    }
+}
+
+-(void) setManagerName:(NSString *)managerName {
+    if (_managerName != managerName) {
+        [managerName retain];
+        [_managerName release];
+        
+        _managerName = managerName;
+    }
+}
+
+-(void) setEmail:(NSString *)email {
+    if (_email != email) {
+        [email retain];
+        [_email release];
+        
+        _email = email;
+    }
+}
+
+
 
 -(id)copyWithZone:(NSZone *)zone {
     // Allocation & init occurs on the parent Person class's copyWithZone method.
