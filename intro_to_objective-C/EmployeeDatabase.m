@@ -40,6 +40,10 @@
     return self;
 }
 
++(BOOL)automaticallyNotifiesObserversOfEmployees {
+    return NO;
+}
+
 -(void)save {
     BOOL success = [NSKeyedArchiver archiveRootObject:self.employees toFile:[self archiveURL].path];
     
@@ -54,7 +58,6 @@
     [self willChangeValueForKey:@"employees"];
     [self save];
     [self didChangeValueForKey:@"employees"];
-
 }
 
 //MARK: Accessor (get) methods
