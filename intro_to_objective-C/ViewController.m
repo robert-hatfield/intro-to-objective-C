@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "NSString+StringOps.h"
 #import "EmployeeDatabase.h"
 
 @interface ViewController () <UITableViewDataSource>
@@ -23,17 +22,13 @@
     // Assign this controller as the tableView's data source
     self.tableView.dataSource = self;
     
-    // Create a new Employee and add it to the database.
-    Employee *robertEmployee = [[Employee alloc]initWithFirstName:@"Robert" lastName:@"Hatfield" age:@40 email:@"robert@lucidthought.xyz" yearsEmployed:@3 andManager:@"Esequiel"];
-    [[EmployeeDatabase shared] add:robertEmployee];
-    
-    // Copy first Employee, modify it, and add it to the database.
-    Employee *imposterEmployee = [robertEmployee copy];
-    imposterEmployee.firstName = @"Roberto";
-    imposterEmployee.lastName = @"McCoy";
-    imposterEmployee.email = @"robertmccoy@aol.com";
-    [[EmployeeDatabase shared] add:imposterEmployee];
+    // Log contents of singleton
+    NSLog(@"All Employees:%@", [[EmployeeDatabase shared] allEmployees]);
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 //MARK: Implement TableViewDataSource methods
