@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [[EmployeeDatabase shared] addObserver:self forKeyPath:@"employees" options:0 context:nil];
     // Assign this controller as the tableView's data source
     self.tableView.dataSource = self;
     
@@ -26,9 +26,17 @@
     NSLog(@"All Employees:%@", [[EmployeeDatabase shared] allEmployees]);
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [_tableView reloadData];
+-(void) observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqual: @"employees"]) {
+        [self.tableView reloadData];
+    }
+}
+
+-(void)dealloc {
+    [[EmployeeDatabase shared] removeObserver:self forKeyPath:@"employees"];
 }
 
 //MARK: Implement TableViewDataSource methods

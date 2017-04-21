@@ -41,7 +41,10 @@
 }
 
 -(void)save {
+    
+    [self willChangeValueForKey:@"employees"];
     BOOL success = [NSKeyedArchiver archiveRootObject:self.employees toFile:[self archiveURL].path];
+    [self didChangeValueForKey:@"employees"];
     
     if (success) {
         NSLog(@"saved Employees");
@@ -68,23 +71,21 @@
 //MARK: Mutating methods
 -(void)add:(Employee *)employee {
     [self.employees addObject:employee];
-    // Save to disk after changing the array
     [self save];
 }
 
 -(void)remove:(Employee *)employee {
     [self.employees removeObject:employee];
-    // Save to disk after changing the array
     [self save];
 }
 
 -(void)removeEmployeeAtIndex:(int)index {
     [self remove:[self employeeAtIndex:index]];
+    [self save];
 }
 
 -(void)removeAllEmployees {
-    [self.employees removeAllObjects];
-    // Save to disk after changing the array
+    [self.employees removeAllObjects];    
     [self save];
 }
 
