@@ -14,9 +14,9 @@
 		62B00AFF1EA524F6004EF9C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B00AFD1EA524F6004EF9C4 /* Main.storyboard */; };
 		62B00B011EA524F6004EF9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B00B001EA524F6004EF9C4 /* Assets.xcassets */; };
 		62B00B041EA524F6004EF9C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B00B021EA524F6004EF9C4 /* LaunchScreen.storyboard */; };
-		62B00B0D1EA52F06004EF9C4 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B0C1EA52F06004EF9C4 /* Person.m */; };
+		62B00B0D1EA52F06004EF9C4 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B0C1EA52F06004EF9C4 /* Person.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62B00B1A1EA564BD004EF9C4 /* NSString+StringOps.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B191EA564BD004EF9C4 /* NSString+StringOps.m */; };
-		62B00B1D1EA59DFF004EF9C4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B1C1EA59DFF004EF9C4 /* Employee.m */; };
+		62B00B1D1EA59DFF004EF9C4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B1C1EA59DFF004EF9C4 /* Employee.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		62B00B211EA68764004EF9C4 /* EmployeeDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B00B201EA68764004EF9C4 /* EmployeeDatabase.m */; };
 /* End PBXBuildFile section */
 

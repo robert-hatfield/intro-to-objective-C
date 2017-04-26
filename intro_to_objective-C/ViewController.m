@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "EmployeeDatabase.h"
 
-@interface ViewController () <UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -18,17 +18,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Assign this controller as the tableView's data source
+    
+    [[EmployeeDatabase shared] addObserver:self forKeyPath:@"employees" options:0 context:nil];
+    
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     // Log contents of singleton
     NSLog(@"All Employees:%@", [[EmployeeDatabase shared] allEmployees]);
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [_tableView reloadData];
+-(void) observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqual: @"employees"]) {
+        
+        [self.tableView reloadData];
+    }
+}
+
+-(void)dealloc {
+    [[EmployeeDatabase shared] removeObserver:self forKeyPath:@"employees"];
 }
 
 //MARK: Implement TableViewDataSource methods
@@ -44,7 +55,32 @@
     
     NSString *fullName = [NSString stringWithFormat: @"%@ %@", employee.firstName, employee.lastName];
     cell.textLabel.text = fullName;
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
+
+//MARK: Implement TableViewDelegate methods
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[EmployeeDatabase shared] silentlyRemoveEmployeeAtIndex:(int)indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+
 
 @end

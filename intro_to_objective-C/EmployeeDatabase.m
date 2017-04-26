@@ -40,6 +40,10 @@
     return self;
 }
 
++(BOOL)automaticallyNotifiesObserversOfEmployees {
+    return NO;
+}
+
 -(void)save {
     BOOL success = [NSKeyedArchiver archiveRootObject:self.employees toFile:[self archiveURL].path];
     
@@ -48,6 +52,12 @@
     } else {
         NSLog(@"save failed!");
     }
+}
+
+-(void)saveAndNotifyObservers {
+    [self willChangeValueForKey:@"employees"];
+    [self save];
+    [self didChangeValueForKey:@"employees"];
 }
 
 //MARK: Accessor (get) methods
@@ -68,24 +78,28 @@
 //MARK: Mutating methods
 -(void)add:(Employee *)employee {
     [self.employees addObject:employee];
-    // Save to disk after changing the array
-    [self save];
+    [self saveAndNotifyObservers];
 }
 
 -(void)remove:(Employee *)employee {
     [self.employees removeObject:employee];
-    // Save to disk after changing the array
-    [self save];
+    [self saveAndNotifyObservers];
 }
 
 -(void)removeEmployeeAtIndex:(int)index {
     [self remove:[self employeeAtIndex:index]];
+    [self saveAndNotifyObservers];
 }
 
--(void)removeAllEmployees {
-    [self.employees removeAllObjects];
-    // Save to disk after changing the array
+-(void)silentlyRemoveEmployeeAtIndex:(int)index {
+    [self.employees removeObjectAtIndex:index];
     [self save];
+}
+
+
+-(void)removeAllEmployees {
+    [self.employees removeAllObjects];    
+    [self saveAndNotifyObservers];
 }
 
 //MARK: Helper methods

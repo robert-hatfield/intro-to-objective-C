@@ -22,6 +22,36 @@
     return self;
 }
 
+// Override setters for use with manual reference counting
+-(void)setFirstName:(NSString *)firstName {
+    if (_firstName != firstName) {
+        [firstName retain];
+        [_firstName release];
+        
+        _firstName = firstName;
+    }
+}
+
+-(void)setLastName:(NSString *)lastName {
+    if (_lastName != lastName) {
+        [lastName retain];
+        [_lastName release];
+        
+        _lastName = lastName;
+    }
+    
+}
+
+-(void)setAge:(NSNumber *)age {
+    if (_age != age) {
+        [age retain];
+        [_age release];
+        
+        _age = age;
+    }
+}
+
+// Action methods
 -(void)walk {
     NSString *name = [self firstName];
     NSLog(@"%@ is walking...", name);
@@ -40,6 +70,15 @@
     person.age = self.age;
     
     return person;
+}
+
+-(void) dealloc {
+    // Release retained instance variables
+    [_firstName release];
+    [_lastName release];
+    [_age release];
+    
+    [super dealloc];
 }
 
 @end
