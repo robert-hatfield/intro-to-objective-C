@@ -91,8 +91,8 @@
     [self saveAndNotifyObservers];
 }
 
--(void)removeEmployeeFromTableAtIndex:(int)index {
-    [self remove:[self employeeAtIndex:index]];
+-(void)silentlyRemoveEmployeeAtIndex:(int)index {
+    [self.employees removeObjectAtIndex:index];
     [self save];
 }
 

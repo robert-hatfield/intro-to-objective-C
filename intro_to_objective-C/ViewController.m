@@ -55,6 +55,7 @@
     
     NSString *fullName = [NSString stringWithFormat: @"%@ %@", employee.firstName, employee.lastName];
     cell.textLabel.text = fullName;
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -62,7 +63,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[EmployeeDatabase shared] removeEmployeeFromTableAtIndex:(int)indexPath.row];
+        [[EmployeeDatabase shared] silentlyRemoveEmployeeAtIndex:(int)indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }
